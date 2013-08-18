@@ -10,14 +10,14 @@ exports.parseRequest = function (request) {
         params: {},
         args: [],
         code: 200,
-        success: false
+        success: true
     };
     // parse url and GET data
     if (request.url) {
         var urlData = url.parse(request.url, true);
         data.path = urlData.pathname;
         data.args = data.path.split("/").slice(1);
-        extend(data.params, urlData.query);
+        data.params = extend(data.params, urlData.query);
     }
     // parse POST data
     var requestBody = '';
@@ -31,7 +31,7 @@ exports.parseRequest = function (request) {
         }
     });
     request.on('end', function () {
-        extend(data.params, qs.parse(requestBody));
+        data.params = extend(data.params, qs.parse(requestBody));
     });
     return data;
 };
