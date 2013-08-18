@@ -1,5 +1,7 @@
 var http = require("http");
 var web = require("./modules/web.js");
+/*var theme = require("./modules/theme.js");*/
+
 http.createServer(function (request, response) {
     var req = web.parseRequest(request);
     // TODO: hasan template engine
@@ -14,7 +16,7 @@ http.createServer(function (request, response) {
             year:2010
         }
     }
-    var result = theme("product.html",vars);
+    var result = theme.render("product.html",vars);
     response.writeHead(req.code, "text/plain");
     response.write(result+"");
     */
