@@ -1,9 +1,9 @@
 var http = require("http");
-var web = require("./modules/web.js");
+var router = require("./modules/router.js");
 /*var theme = require("./modules/theme.js");*/
 
 http.createServer(function (request, response) {
-    var req = web.parseRequest(request);
+    router.rout(request,response);
     // TODO: hasan template engine
     /*
     var vars = {
@@ -20,7 +20,7 @@ http.createServer(function (request, response) {
     response.writeHead(req.code, "text/plain");
     response.write(result+"");
     */
-    response.writeHead(req.code, "text/plain");
+    response.writeHead(200, "text/plain");
     response.write("LOL");
     response.end();
 }).listen(8000);

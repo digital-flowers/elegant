@@ -2,22 +2,26 @@ var qs = require('querystring');
 var url = require("url");
 var settings = require("../settings");
 var extend = require("../node_modules/extend");
+var trim = require("trimmer");
 
-exports.parseRequest = function (request) {
+exports.parseRequest = function (request,handler) {
     var data = {
         method: request.method,
         path: "",
-        params: {},
         args: [],
+        post:{},
+        get:{},
+        params: {},
         code: 200,
-        success: false
+        success: true
     };
     // parse url and GET data
     if (request.url) {
         var urlData = url.parse(request.url, true);
-        data.path = urlData.pathname;
-        data.args = data.path.split("/").slice(1);
-        extend(data.params, urlData.query);
+        data.path = trim(urlData.pathname,"/");
+        data.args = data.path.split("/");
+        data.get = urlData.query;
+        data.params = extend(data.params, data.get);
     }
     // parse POST data
     var requestBody = '';
@@ -31,7 +35,8 @@ exports.parseRequest = function (request) {
         }
     });
     request.on('end', function () {
-        extend(data.params, qs.parse(requestBody));
+        data.post = qs.parse(requestBody);
+        data.params = extend(data.params, data.post);
+        handler(data);
     });
-    return data;
 };
