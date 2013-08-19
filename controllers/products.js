@@ -1,13 +1,12 @@
 exports["/products"] = {
-    method:"get",
+    method:"GET",
     handler:function(data){
-        return "products";
+        return "products page";
     }
 };
-
-exports["/products/car"] = {
-    method:"post",
+exports["/products/cars"] = {
+    method:"POST",
     handler:function(data){
-        return "products car";
+        return "products cars page";
     }
 };

@@ -13,7 +13,10 @@ exports.parseRequest = function (request,handler) {
         get:{},
         params: {},
         code: 200,
-        success: true
+        success: true,
+        head:{
+            'content-type':'text/html'
+        }
     };
     // parse url and GET data
     if (request.url) {
