@@ -11,12 +11,14 @@ var fs = require("fs");
 exports.RenderView = function (view,vars) {
 
    // Get Defult Folder From Settings
-   var ViewDR = "" + settings['VIEWS_DIR'];
+   var ViewDR = "" + settings.VIEWS_DIR;
 
    // Construct View Path
    var ViewPath = "views/product.html";
 
    // Read View File
+
+
 
    var file = fs.readFile(ViewPath, 'utf8', function (err,data) {
         if (err) {
