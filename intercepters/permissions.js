@@ -1,3 +1,3 @@
-exports = function(data){
+module.exports = function(data){
 
 };
