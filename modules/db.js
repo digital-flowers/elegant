@@ -5,6 +5,7 @@
  * Time: 5:47 PM
  * To change this template use File | Settings | File Templates.
  */
+var settings = require("../settings.js");
 
 module.exports = function(query){
 
@@ -13,10 +14,10 @@ var mysql      = require('mysql');
 
 // Database Configration
 var connection = mysql.createConnection({
-    host     : 'localhost',
-    user     : 'root',
-    password : 'root',
-    database: 'coacharabia'
+    host     : settings.DB_HOST,
+    user     : settings.DB_USER,
+    password : settings.DB_PASS,
+    database: settings.DB_NAME
 });
 
 // Connect To Database
