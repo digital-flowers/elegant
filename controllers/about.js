@@ -1,12 +1,12 @@
-// TODO: hasan template engine
+var redirect = require("../modules/redirect.js");
 exports["/about"] = {
-    handler:function(data){
-        return "about";
+    handler:function(data,model){
+        return "about page";
     }
 };
 
 exports["/about/us"] = {
     handler:function(data){
-        return {text:"LOL",code:302,head:{location:"/products"}};
+        return redirect("/products");
     }
 };
