@@ -7,30 +7,27 @@
  */
 var settings = require("../settings");
 var fs = require("fs");
+var swig  = require('swig');
 
-exports.RenderView = function (view,vars) {
+module.exports = function (ViewName,vars) {
 
    // Get Defult Folder From Settings
-   var ViewDR = "" + settings.VIEWS_DIR;
+   var ViewDR =  settings.VIEWS_DIR;
 
    // Construct View Path
-   var ViewPath = "views/product.html";
+   var ViewName = ViewName;
 
-   // Read View File
+   // View Full Path
+   var ViewPath = ViewDR + "/" + ViewName;
 
+   // Compile Requested File
+   var tpl = swig.compileFile(ViewPath);
 
-
-   var file = fs.readFile(ViewPath, 'utf8', function (err,data) {
-        if (err) {
-            return console.log(err);
-        }
-
-              return console.log(data);
+   // Return Compiled File
+   return tpl(vars);
 
 
 
-    });
 
-    return file;
 
 };
