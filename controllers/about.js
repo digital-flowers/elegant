@@ -1,5 +1,3 @@
-// TODO: hasan template engine
-
 var settings = require("../settings.js");
 var view = require("../modules/theme.js");
 var db = require("../modules/db.js");
