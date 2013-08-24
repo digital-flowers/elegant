@@ -1,7 +1,7 @@
 var settings = require("../settings.js");
 var view = require("../modules/theme.js");
 var db = require("../modules/db.js");
-
+var redirect = require("../modules/redirect.js");
 
 exports["/about"] = {
     handler:function(data){
@@ -18,6 +18,6 @@ exports["/about"] = {
 
 exports["/about/us"] = {
     handler:function(data){
-        return {text:"LOL",code:302,head:{location:"/products"}};
+        return redirect("/products");
     }
 };
