@@ -7,7 +7,6 @@
  */
 var settings = require("../settings.js");
 
-module.exports = function(query){
 
 // Require the Mysql Module
 var mysql      = require('mysql');
@@ -20,17 +19,16 @@ var connection = mysql.createConnection({
     database: settings.DB_NAME
 });
 
-// Connect To Database
-connection.connect();
+
+
+module.exports = function(query,handler){
+
+    // Connect To Database
+    connection.connect();
+
 
     // Passing the Query
-    connection.query(query, function(err, rows, fields) {
-
-        //Execption
-        if (err) throw err;
-
-        console.log(rows);
-    });
+    connection.query(query,handler);
 
     // Close connection
     connection.end();

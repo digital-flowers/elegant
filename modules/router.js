@@ -2,9 +2,10 @@ var web = require("./web.js");
 var settings = require("../settings.js");
 var extend = require("extend");
 var trim = require('trimmer');
+var requireAll = require('require-all');
 
 // require all controllers js files
-var controllersJs = require('require-all')({
+var controllersJs = requireAll({
     dirname: settings.PROJECT_DIR + '/'+settings.CONTROLLERS_DIR,
     filter: /.+\.js$/,
     excludeDirs: /^\.(git|svn)$/
@@ -62,7 +63,7 @@ exports.rout = function (request, response) {
         }
 
         response.writeHead(data.code, data.head);
-            if(data.success && text){
+        if(data.success && text){
             response.write(text);
         }
         response.end()

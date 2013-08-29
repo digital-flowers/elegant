@@ -8,9 +8,16 @@ var db = require("../modules/db.js");
 exports["/about"] = {
     handler:function(data){
         // Prepare Vars
+         var data = "";
 
+        db("SELECT * FROM `auth_user`",function(err, rows, fields) {
 
-        var Query  = db("SELECT * FROM `auth_user`");
+            //Execption
+            if (err) throw err;
+
+            data = rows;
+        });
+
         var vars = {article: { pagename: 'Swig is fun!' ,writer:["fareed","hassan"]}};
 
         //Render View with its Variables
