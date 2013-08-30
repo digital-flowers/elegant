@@ -6,31 +6,23 @@
  * To change this template use File | Settings | File Templates.
  */
 var settings = require("../settings.js");
+var mysql = require('mysql');
+var $ = require("../modules/$.js");
 
-
-// Require the Mysql Module
-var mysql      = require('mysql');
-
-// Database Configration
+// Database Configuration
 var connection = mysql.createConnection({
-    host     : settings.DB_HOST,
-    user     : settings.DB_USER,
-    password : settings.DB_PASS,
-    database: settings.DB_NAME
+    host: settings.DB.HOST,
+    user: settings.DB.USER,
+    password: settings.DB.PASSWORD,
+    database: settings.DB.DATABASE
 });
 
-
-
-module.exports = function(query,handler){
-
-    // Connect To Database
-    connection.connect();
-
-
+module.exports = function (query, handler) {
     // Passing the Query
-    connection.query(query,handler);
-
-    // Close connection
-    connection.end();
-
+    connection.query(query,
+        $(function () {
+                handler.apply(this, arguments);
+            }
+        )
+    );
 };

@@ -4,6 +4,13 @@
     <title>test</title>
 </head>
 <body>
-    test
+hello {{user.name}}
+<ul>
+    {% for user in users %}
+    <li>
+        {{ user.name }}
+    </li>
+    {% endfor %}
+</ul>
 </body>
 </html>

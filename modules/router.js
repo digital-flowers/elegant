@@ -1,12 +1,12 @@
 var web = require("./web.js");
 var settings = require("../settings.js");
 var extend = require("extend");
-var trim = require('trimmer');
-var requireAll = require('require-all');
+var trim = require("trimmer");
+var $ = require("./$.js");
 
 // require all controllers js files
-var controllersJs = requireAll({
-    dirname: settings.PROJECT_DIR + '/'+settings.CONTROLLERS_DIR,
+var controllersJs = require('require-all')({
+    dirname: settings.DIR.PROJECT + '/' + settings.DIR.CONTROLLERS,
     filter: /.+\.js$/,
     excludeDirs: /^\.(git|svn)$/
 });
@@ -19,7 +19,7 @@ for (var i in controllersJs) {
         controllers[trim(j, "/")] = extend({
             method: "GET",
             permissions: [],
-            handler: function () {
+            handler: function (data, request, response) {
             }
         }, controllerJs[j]);
     }
@@ -29,44 +29,42 @@ exports.rout = function (request, response) {
     web.parseRequest(request, function (data) {
         var args = data.args;
         var controller;
-        while(args.length && !controller){
+        while (args.length && !controller) {
             controller = controllers[args.join("/")];
             args.pop();
         }
         var text = "";
-        if(controller){
-            if(controller.method.toLowerCase() == data.method.toLowerCase()){
-                var chunk = controller.handler(data);
-                if(typeof chunk == "string"){
-                    text += chunk;
-                }else if(typeof chunk == "object"){
-                    if(chunk.code){ // code
-                        var code = parseInt(chunk.code);
-                        if(!isNaN(code)){
-                            data.code = code;
+        if (controller) {
+            if (controller.method.toLowerCase() == data.method.toLowerCase()) {
+                $.reset();
+                var chunk = controller.handler.call(this, data, request, response);
+                $.complete = function () {
+                    $.readyQueue.forEach(function (ready) {
+                        ready(data, request, response);
+                    });
+                };
+                $(function(){
+                    if (chunk) {
+                        text += chunk;
+                        response.writeHead(data.code, data.head);
+                        if (data.success && text) {
+                            response.write(text);
                         }
+                        response.end();
                     }
-                    if(chunk.text){
-                        text += chunk.text;
-                    }
-                    if(chunk.head){
-                        data.head = extend(data.head,chunk.head);
-                    }
-                }
-            }else{
+                })();
+            } else {
                 data.code = 405; // method not allowed
                 data.success = false;
             }
-        }else{
+        } else {
             data.code = 404; // page not found
             data.success = false;
         }
-
-        response.writeHead(data.code, data.head);
-        if(data.success && text){
-            response.write(text);
+        if (!data.success) {
+            response.writeHead(data.code, data.head);
+            response.end();
         }
-        response.end()
     });
 };
 
