@@ -20,7 +20,8 @@ var connection = mysql.createConnection({
 module.exports = function (query, handler) {
     // Passing the Query
     connection.query(query,
-        $(function () {
+        $(
+            function () {
                 handler.apply(this, arguments);
             }
         )
