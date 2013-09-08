@@ -11,6 +11,13 @@ var swig  = require('swig');
 var $ = require("./$.js");
 
 module.exports = function (viewName,vars) {
+
+    var varslen = vars.length;
+    for(var i = 0; i < varslen; i++) {
+        vars[i] = swig.compile(vars[i]);
+    }
+
+
     $.ready(
         function(data,request,response){
             var tpl = swig.compileFile(settings.DIR.VIEWS + "/" + viewName)(vars);
