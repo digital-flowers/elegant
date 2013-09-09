@@ -1,16 +1,20 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>test</title>
-</head>
-<body>
-hello {{user.name}}
+{% extends 'layout.html' %}
+
+
+{% block title %} Livejs {% endblock %}
+
+
+{% block content %}
+
+
+
+hello {{user.first_name}}  - {{bar}}  - {{render(bars)}}
 <ul>
-    {% for city in cityes %}
+    {% for user in users %}
     <li>
-        {{ city.length }}
+        {{ user.first_name }}
     </li>
     {% endfor %}
 </ul>
-</body>
-</html>
+
+{% endblock %}
