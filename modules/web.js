@@ -1,27 +1,27 @@
 var qs = require('querystring');
 var url = require("url");
-var settings = require("../settings");
-var extend = require("../node_modules/extend");
+var settings = require("../settings.js");
+var extend = require("extend");
 var trim = require("trimmer");
 
-exports.parseRequest = function (request,handler) {
+exports.parseRequest = function (request, handler) {
     var data = {
         method: request.method,
         path: "",
         args: [],
-        post:{},
-        get:{},
+        post: {},
+        get: {},
         params: {},
         code: 200,
         success: true,
-        head:{
-            'content-type':'text/html'
+        head: {
+            'content-type': 'text/html'
         }
     };
     // parse url and GET data
     if (request.url) {
         var urlData = url.parse(request.url, true);
-        data.path = trim(urlData.pathname,"/");
+        data.path = trim(urlData.pathname, "/");
         data.args = data.path.split("/");
         data.get = urlData.query;
         data.params = extend(data.params, data.get);

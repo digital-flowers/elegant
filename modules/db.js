@@ -7,7 +7,7 @@
  */
 var settings = require("../settings.js");
 var mysql = require('mysql');
-var $ = require("../modules/$.js");
+var $ = require("./$.js");
 
 // Database Configuration
 var connection = mysql.createConnection({
