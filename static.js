@@ -20,28 +20,30 @@ var http = require("http");
 
 http.createServer(function (request, response) {
 
-        var fileName = "./foo.txt";
+        var fileName = "./controllers/foo.txt";
 
-        fs.open('./controllers/foo.txt', 'r', function (err, data) {
 
-            /*fs.fstat(fd,function(err, stats) {
-             var bufferSize=stats.size,
-             chunkSize=512,
-             buffer= new Buffer(bufferSize),
-             bytesRead = 0;
+        fs.exists(fileName, function (exists) {
+            if (exists) {
+                fs.stat(fileName, function (error, stats) {
+                    fs.open(fileName, "r", function (error, fd) {
+                        var buffer = new Buffer(stats.size);
 
-             while (bytesRead < bufferSize) {
-             if ((bytesRead + chunkSize) > bufferSize) {
-             chunkSize = (bufferSize - bytesRead);
-             }
-             fs.read(fd, buffer, bytesRead, chunkSize, bytesRead);
-             bytesRead += chunkSize;
-             }
-             console.log(buffer.toString('utf8', 0, bufferSize));
-             });*/
-            console.log(data);
-            response.end();
+                        fs.read(fd, buffer, 0, buffer.length, null, function (error, bytesRead, buffer) {
+                            var data = buffer.toString("utf8", 0, buffer.length);
+
+                            console.log("Reading file : " + fileName);
+
+                            fs.close(fd);
+                            response.write(data);
+                            response.end();
+                        });
+                    });
+                });
+            }
         });
+
+
     }
 ).listen(9000);
 
