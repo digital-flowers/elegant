@@ -114,10 +114,12 @@ exports["/static"] = {
             // The File Is Downloadable , Lets Download our file.
             var Domain = settings.DOMAIN;
             var file = fs.createWriteStream(fileName);
-            var request = http.get("http://" + Domain + "/static/" + fileName, function (response) {
-                response.pipe(file);
-                console.log(file);
+            var req = http.get("http://localhost/admin/license.txt", function (res) {
+                res.pipe(file);
+                console.log(res);
             });
+
+
         }
 
     }
