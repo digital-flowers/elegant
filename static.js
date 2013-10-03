@@ -14,7 +14,7 @@ var control = require("./modules/control.js");
 var fs = require("fs");
 
 var url = require("url");
-var $ = require("./modules/web.js");
+var $ = require("./lib/interceptors/web.js");
 var http = require("http");
 
 

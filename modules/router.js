@@ -1,5 +1,5 @@
-var web = require("./web.js");
-var $ = require("./$.js");
+var web = require("./../lib/interceptors/request.js");
+//var $ = require("./../../modules/$.js");
 var controllers = require("./controllers.js");
 
 exports.rout = function (request, response) {
@@ -44,4 +44,3 @@ exports.rout = function (request, response) {
         }
     });
 };
-

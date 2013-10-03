@@ -7,7 +7,7 @@
  */
 var settings = require("../settings.js");
 var mysql = require('mysql');
-var $ = require("./$.js");
+//var $ = require("./$.js");
 
 // Database Configuration
 var connection = mysql.createConnection({
@@ -20,10 +20,8 @@ var connection = mysql.createConnection({
 module.exports = function (query, handler) {
     // Passing the Query
     connection.query(query,
-        $(
-            function () {
-                handler.apply(this, arguments);
-            }
-        )
+        function () {
+            handler.apply(this, arguments);
+        }
     );
 };
