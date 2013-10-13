@@ -1,7 +1,4 @@
 // Server Module
-//var server = require("./modules/server.js");
-
-var server = require("./modules/server.js");
-//require("./static.js");
+var server = require("./lib/server.js");
 // Start your engine baby
 server.start();
