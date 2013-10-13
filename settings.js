@@ -8,6 +8,7 @@ module.exports = {
         VIEWS: 'views', // Views Directory
         CONTROLLERS: 'controllers' // Controllers Directory
     },
+    DEFAULT_THEME: "default",
     DB: {
         HOST: "localhost",
         USER: 'root',

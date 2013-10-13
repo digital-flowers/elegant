@@ -9,7 +9,7 @@
 var settings = require("../settings");
 var fs = require("fs");
 var swig = require('swig');
-var $ = require("./$.js");
+//var $ = require("../$.js");
 
 
 module.exports = function (suffix, theme, vars, request, response) {

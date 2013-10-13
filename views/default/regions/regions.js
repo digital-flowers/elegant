@@ -2,20 +2,10 @@
  * Created with JetBrains WebStorm.
  * User: hasan
  * Date: 9/17/13
- * Time: 9:24 PM
+ * Time: 10:18 PM
  * To change this template use File | Settings | File Templates.
  */
 
-
-modules.exports = {
-
-    "jquery.js": true,
-    "style.css": ['about', 'index'],
-    "jquery-ui.js": false
+module.exports = ['bottom', 'top', 'center'];
 
 
-
-
-
-
-}
