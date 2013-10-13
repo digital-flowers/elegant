@@ -20,30 +20,27 @@ var http = require("http");
 
 http.createServer(function (request, response) {
 
-        var fileName = "./controllers/foo.txt";
+        function download(url, cb) {
+            var data = "";
+            var request = require("http").get(url, function (res) {
 
-
-        fs.exists(fileName, function (exists) {
-            if (exists) {
-                fs.stat(fileName, function (error, stats) {
-                    fs.open(fileName, "r", function (error, fd) {
-                        var buffer = new Buffer(stats.size);
-
-                        fs.read(fd, buffer, 0, buffer.length, null, function (error, bytesRead, buffer) {
-                            var data = buffer.toString("utf8", 0, buffer.length);
-
-                            console.log("Reading file : " + fileName);
-
-                            fs.close(fd);
-                            response.write(data);
-                            response.end();
-                        });
-                    });
+                res.on('data', function (chunk) {
+                    data += chunk;
                 });
-            }
+
+                res.on('end', function () {
+                    cb(data);
+                })
+            });
+
+            request.on('error', function (e) {
+                console.log("Got error: " + e.message);
+            });
+        }
+
+        download("http://upload.wikimedia.org/wikipedia/commons/4/4f/Big%26Small_edit_1.jpg", function () {
+            console.log("")
         });
-
-
     }
 ).listen(9000);
 

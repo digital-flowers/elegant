@@ -1,6 +1,6 @@
 module.exports = {
     DOMAIN: "localhost",
-    PORT: 8000,
+    PORT: 8001,
     POST_MAX_SIZE: 40, //MB
     UPLOAD_MAX_FILE_SIZE: 40, //MB , less than or equal POST_MAX_SIZE
     DIR: {
@@ -17,7 +17,19 @@ module.exports = {
     FILES: {
 
         FOLDER: "./static/",
-        Downloadable: ['pdf', 'psd', 'docs', 'mp3', 'zip', 'rar', 'txt']
+        Downloadable: ['psd', 'docs', 'zip', 'rar', 'png'],
+        Headers: {
+            PDF: 'application/pdf',
+            CSS: 'text/css',
+            JS: 'text/javascript',
+            HTML: 'text/html',
+            TXT: 'text/plain',
+            JPG: 'image/jpeg',
+            JPEG: 'image/jpeg',
+            GIF: 'image/gif ',
+            DOWNLOAD: 'application/octet-stream'
+
+        }
 
 
     }
