@@ -4,9 +4,10 @@ module.exports = {
     POST_MAX_SIZE: 40, //MB
     UPLOAD_MAX_FILE_SIZE: 40, //MB , less than or equal POST_MAX_SIZE
     DIR: {
-        PROJECT: __dirname, // Project Directory
-        VIEWS: 'views', // Views Directory
-        CONTROLLERS: 'controllers' // Controllers Directory
+        PROJECT: __dirname, // project directory
+        VIEWS: 'views', // views directory
+        CONTROLLERS: 'controllers', // controllers directory
+        STATIC: "static" // static content directory inside views
     },
     DEFAULT_THEME: "default",
     DB: {
@@ -15,11 +16,9 @@ module.exports = {
         PASSWORD: 'root',
         DATABASE: 'coacharabia'
     },
-    FILES: {
-
-        FOLDER: "./static/",
-        Downloadable: ['psd', 'docs', 'zip', 'rar', 'png'],
-        Headers: {
+    STATIC: {
+        EXTENSIONS: ['psd', 'docs', 'zip', 'rar', 'png'],
+        HEADERS: {
             PDF: 'application/pdf',
             CSS: 'text/css',
             JS: 'text/javascript',
@@ -29,9 +28,6 @@ module.exports = {
             JPEG: 'image/jpeg',
             GIF: 'image/gif ',
             DOWNLOAD: 'application/octet-stream'
-
         }
-
-
     }
 };
