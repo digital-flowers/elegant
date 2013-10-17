@@ -17,17 +17,23 @@ module.exports = {
         DATABASE: 'coacharabia'
     },
     STATIC: {
-        EXTENSIONS: ['psd', 'docs', 'zip', 'rar', 'png'],
         HEADERS: {
-            PDF: 'application/pdf',
-            CSS: 'text/css',
-            JS: 'text/javascript',
-            HTML: 'text/html',
-            TXT: 'text/plain',
-            JPG: 'image/jpeg',
-            JPEG: 'image/jpeg',
-            GIF: 'image/gif ',
-            DOWNLOAD: 'application/octet-stream'
+            pdf: 'application/pdf',
+            css: 'text/css',
+            js: 'text/javascript',
+            html: 'text/html',
+            txt: 'text/plain',
+            jpg: 'image/jpeg',
+            gif: 'image/gif',
+            png: 'image/png',
+            jpeg: 'image/jpeg',
+            jpg: 'image/jpg'
+        }
+    },
+    ERROR: {
+        REDIRECT: {
+            //all:"/error/{code}",
+            404: "/error/404"
         }
     }
 };

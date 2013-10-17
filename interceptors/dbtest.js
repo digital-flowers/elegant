@@ -1,4 +1,4 @@
-var Interceptor = require("../lib/interceptor.js");
+var Interceptor = require("../lib/type/interceptor.js");
 var db = require("../modules/db.js");
 
 new Interceptor(10).execute(function () {
