@@ -5,6 +5,7 @@ module.exports = {
     UPLOAD_MAX_FILE_SIZE: 40, //MB , less than or equal POST_MAX_SIZE
     DIR: {
         PROJECT: __dirname, // project directory
+        SESSION: __dirname + "/.session-data", // session data
         VIEWS: 'views', // views directory
         CONTROLLERS: 'controllers', // controllers directory
         STATIC: "static" // static content directory inside views
@@ -13,8 +14,8 @@ module.exports = {
     DB: {
         HOST: "localhost",
         USER: 'root',
-        PASSWORD: 'root',
-        DATABASE: 'coacharabia'
+        PASSWORD: '123',
+        DATABASE: 'test'
     },
     STATIC: {
         HEADERS: {
@@ -33,7 +34,7 @@ module.exports = {
     ERROR: {
         REDIRECT: {
             //all:"/error/{code}",
-            404: "/error/404"
+            //404: "/error/404"
         }
     }
 };
