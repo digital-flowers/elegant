@@ -1,7 +1,12 @@
-// Server Module
+// init settings
+require("./settings");
+
+// server module
 var server = require("./lib/server.js");
+
 // load cores
 server.loadInterceptors();
 server.loadControllers();
-// Start your engine baby
+
+// start server
 server.start();
