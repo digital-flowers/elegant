@@ -6,6 +6,7 @@ module.exports = {
     DIR: {
         PROJECT: __dirname, // project directory
         SESSION: __dirname + "/.session-data", // session data
+        INTERCEPTORS: 'interceptors',
         VIEWS: 'views', // views directory
         CONTROLLERS: 'controllers', // controllers directory
         STATIC: "static" // static content directory inside views
