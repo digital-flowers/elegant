@@ -1,0 +1,34 @@
+{
+    "name": "elegant",
+    "version": "0.9.0",
+    "description": "frame work for node js",
+    "main": "index.js",
+    "dependencies": {
+        "clone": "~0.1.10",
+        "clean-css": "~1.1.1",
+        "extend": "~1.1.3",
+        "mysql": "~2.0.0-alpha8",
+        "require-all": "~0.0.6",
+        "node-static": "~0.7.1",
+        "session-manager": "~0.1.0",
+        "swig": "~1.0.0-pre3",
+        "trimmer": "~0.0.3"
+    },
+    "devDependencies": {},
+    "scripts": {
+        "test": "start index.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/digital-flowers/livejs.git"
+    },
+    "keywords": [
+        "web",
+        "nodejs"
+    ],
+    "author": "hasan,fareed",
+    "license": "GPL Version 3",
+    "bugs": {
+        "url": "https://github.com/digital-flowers/livejs/issues"
+    }
+}
