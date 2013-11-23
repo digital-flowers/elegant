@@ -1,4 +1,4 @@
-livejs
+elegant
 ======
 
-Web framework based on Node JS
+web framework based on nodejs
