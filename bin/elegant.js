@@ -12,7 +12,7 @@ myPathArr.pop();
 var elegantPath = myPathArr.join("/");
 
 // program basic options
-program.version(package.version)
+program.version(_package.version)
     .usage("[command] [options]")
     .option('-m, --more', 'use with --help to show more help')
     .on('--help', function () {
@@ -68,7 +68,7 @@ function createApp(path) {
         });
     });
 }
-// special thanks for locomotive framework for this great functions
+// special thanks for locomotive framework for these great functions
 function emptyDirectory(path, fn) {
     fs.readdir(path, function (err, files) {
         if (err && 'ENOENT' != err.code) throw err;

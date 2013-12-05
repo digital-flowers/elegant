@@ -1,12 +1,8 @@
-// init settings
-require("./settings");
+// init config
+require("elegant-config").DIR.PROJECT = __dirname;
+
+// get user config
+require("./app/config");
 
 // server module
-var server = require("./lib/server.js");
-
-// load cores
-server.loadInterceptors();
-server.loadControllers();
-
-// start server
-server.start();
+require("./lib/server.js").start();
