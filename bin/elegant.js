@@ -70,7 +70,6 @@ function createApp(path) {
     mkdir(path, function () {
         ncp(elegantPath, path, {filter: function (file) {
             if (dontCopyFiles.indexOf(file) >= 0) {
-                console.log(file);
                 return false;
             }
             return true;
