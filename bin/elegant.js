@@ -1,18 +1,20 @@
 #!/usr/bin/env node
-var program = require('commander');
+var program = require('commander-plus');
 var mkdirp = require('mkdirp');
 var fs = require('fs');
 var ncp = require("ncp").ncp;
-
 var package = require('../package.json');
-
 var myPath = __dirname;
+
 var myPathArr = myPath.split("/");
 myPathArr.pop();
 var elegantPath = myPathArr.join("/");
+var colorStart = "   \x1b[35;2m";
+var colorEnd = "\x1b[0m";
+
 
 // program basic options
-program.version(_package.version)
+program.version(package.version)
     .usage("[command] [options]")
     .option('-m, --more', 'use with --help to show more help')
     .on('--help', function () {
@@ -30,41 +32,78 @@ program.command("create")
     .action(function (name) {
         var path = process.env.PWD;
         if (typeof name == "string") {
+            package.name = name;
             path += "/" + name;
+        } else {
+            package.name = "new elegant project";
         }
         emptyDirectory(path, function (empty) {
             if (empty) {
                 createApp(path);
             } else {
-                /*
-                 program.confirm('target directory is not empty, continue? ', function(ok) {
-                 if (ok) {
-                 process.stdin.destroy();
-                 create(path);
-                 } else {
-                 console.error("operation canceled!");
-                 process.exit(1);
-                 }
-                 });
-                 */
+                program.confirm('target directory is not empty, continue? ', function (ok) {
+                    if (ok) {
+                        process.stdin.destroy();
+                        createApp(path);
+                    } else {
+                        console.error("operation canceled!");
+                        process.exit(1);
+                    }
+                });
             }
         });
     });
 
 program.parse(process.argv);
-
 if (program.args.length <= 0) {
     program.help();
 }
 
 // util
 function createApp(path) {
+    var dontCopyFiles = [];
+    dontCopyFiles.push(elegantPath + "/package.json");
+    dontCopyFiles.push(elegantPath + "/README.md");
+    dontCopyFiles.push(elegantPath + "/LICENSE");
+    dontCopyFiles.push(elegantPath + "/bin");
+
     mkdir(path, function () {
         ncp(elegantPath, path, {filter: function (file) {
-            //console.log("\033[36mcreate\033[0m : " + file);
+            if (dontCopyFiles.indexOf(file) >= 0) {
+                console.log(file);
+                return false;
+            }
             return true;
         }}, function () {
-            console.log("\033[36mnew elegant project created at \033[0m : " + path);
+            // create project package.json
+            // delete unwanted properties
+            delete package.readme, package.bin, package._id, package._from, package.dist;
+            // change properties
+            package.description = "new elegant project";
+            package.private = true;
+            package.elegant = package.version;
+            package.version = "0.0.1";
+            package.repository = {
+                type: "your project repository type",
+                url: "your project repository url"
+            };
+            package.keywords = ["keyword1", "keyword2"];
+            package.author = {
+                name: "your name"
+            };
+            package.license = "your project license";
+            package.bugs = {
+                "url": "your project repository bugs url"
+            };
+            package.homepage = "your project website";
+            // write project package
+            write(path + "/package.json", JSON.stringify(package));
+            // write read me and LICENSE
+            write(path + "/README.md", "your project READ ME");
+            write(path + "/LICENSE", "your project LICENSE");
+
+            // project created
+            console.log(colorStart + "new elegant project created at" + colorEnd + " : " + path);
         });
     });
 }
@@ -81,4 +120,8 @@ function mkdir(path, fn) {
         if (err) throw err;
         fn && fn();
     });
+}
+function write(path, str) {
+    fs.writeFile(path, str);
+    console.log(colorStart + 'create' + colorEnd + " : " + path);
 }
