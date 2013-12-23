@@ -49,9 +49,9 @@
     "readme": "elegant webframework based on nodejs\n",
     "readmeFilename": "README.md",
     "homepage": "https://github.com/digital-flowers/livejs",
-    "_id": "elegant@0.9.3",
+    "_id": "elegant@0.9.4",
     "dist": {
-        "shasum": "26bf20f3a9b0a0057398fad78c476ab393ae67f4"
+        "shasum": "012f6922a116c76b1761cc08648975acf307d724"
     },
     "_from": "elegant"
 }

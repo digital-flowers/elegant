@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 var program = require('commander-plus');
+var os = require("os");
 var mkdirp = require('mkdirp');
 var fs = require('fs');
 var ncp = require("ncp").ncp;
@@ -11,7 +12,6 @@ myPathArr.pop();
 var elegantPath = myPathArr.join("/");
 var colorStart = "   \x1b[35;2m";
 var colorEnd = "\x1b[0m";
-
 
 // program basic options
 program.version(package.version)
@@ -76,7 +76,11 @@ function createApp(path) {
         }}, function () {
             // create project package.json
             // delete unwanted properties
-            delete package.readme, package.bin, package._id, package._from, package.dist;
+            delete package.readme;
+            delete package.bin;
+            delete package._id;
+            delete package._from;
+            delete package.dist;
             // change properties
             package.description = "new elegant project";
             package.private = true;
@@ -96,7 +100,7 @@ function createApp(path) {
             };
             package.homepage = "your project website";
             // write project package
-            write(path + "/package.json", JSON.stringify(package));
+            write(path + "/package.json", JSON.stringify(package, null, 4));
             // write read me and LICENSE
             write(path + "/README.md", "your project READ ME");
             write(path + "/LICENSE", "your project LICENSE");
