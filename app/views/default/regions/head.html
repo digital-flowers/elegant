@@ -1,0 +1,42 @@
+<meta name="viewport" content="initial-scale=1">
+<title>elegant app</title>
+<meta name="description" content="elegant app"/>
+
+<link href="/static/favicon.png" rel="icon" type="image/x-icon"/>
+
+<!--
+    the following code is managed to dynamically manage your javascript and css files for maximum page speed
+    if you want to add additional css and javascript files its recommended to add them in the /app/views/resources.js
+    file or although you can add them manually here, for more information about how to manage your app resources visit:
+    http://getelegant.com/start.html#managing-static
+-->
+
+{% for bundle in RESOURCES %}
+    {% if bundle.compact %} <!-- check if compact resources is enabled -->
+        {% if bundle.type == "css" %}
+            {% if bundle.cache && bundle.inline %} <!-- check if this bundle should be printed inline -->
+                <style type="text/css">
+                    {{ bundle.content }}
+                </style>
+            {% else %}
+                <link href="/resources/{{ bundle.name }}" rel="stylesheet" />
+            {% endif %}
+        {% elseif bundle.type == "js" %}
+            {% if bundle.cache && bundle.inline %} <!-- check if this bundle should be printed inline -->
+                <script type="text/javascript">
+                    {{ bundle.content }}
+                </script>
+            {% else %}
+                <script src="/resources/{{ bundle.name }}" type="text/javascript"></script>
+            {% endif %}
+        {% endif %}
+    {% else %}
+        {% for file in bundle.files %} <!-- loop through this bundle files and print them -->
+            {% if bundle.type == "css" %}
+                <link href="/static/{{ file }}" rel="stylesheet"/>
+            {% elseif bundle.type == "js" %}
+                <script src="/static/{{ file }}" type="text/javascript"></script>
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endfor %}

@@ -1,0 +1,25 @@
+/*
+    its recommended to insert your important css here and the additional styles in the styles.css
+    because when you compact and compress your resources these styles will be printed directly in the page head using
+    the <style> tag and the rest css files will be added normally using the <link> tag, for more information on how to
+    increase your application page speed please visit https://developers.google.com/speed/docs/insights/rules
+
+    Note: print your images/fonts urls related to this file as normal and the elegant will automatically fix them
+    when it print this file content inline in your page
+
+    Note: if you want to add additional css files its recommended to add them in the /app/views/resources.js file
+    although you can add them manually in the page <head>, for more information about how to manage your app resources
+    visit: http://getelegant.com/start.html#managing-static
+*/
+body {
+    background-image: url(/static/images/pattern.png);
+}
+
+#welcome-elegant {
+    display: block;
+    position: absolute;
+    top: 50%;
+    margin-left: -250px;
+    left: 50%;
+    margin-top: -180px;
+}
