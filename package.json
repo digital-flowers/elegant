@@ -1,28 +1,35 @@
 {
     "name": "elegant",
-    "version": "0.9.4",
-    "description": "frame work for node js",
+    "version": "0.9.8",
+    "description": "Open Source, Clean and Flexible NodeJs Web Framework With Beautiful Code, Easy to Learn And All the Power of Node",
     "main": "index.js",
     "dependencies": {
         "clone": "~0.1.11",
+        "clean-css": "~2.0.4",
         "commander-plus": "~0.0.6",
+        "crc": "~0.2.1",
         "elegant-config": "~0.9.0",
         "elegant-controller": "~0.9.0",
         "elegant-error": "~0.9.0",
         "elegant-file": "~0.9.0",
         "elegant-interceptor": "~0.9.0",
-        "elegant-sync": "~0.9.0",
-        "elegant-view": "~0.9.0",
+        "elegant-mysql": "~0.9.0",
         "elegant-redirect": "~0.9.0",
+        "elegant-response-data": "~0.9.0",
+        "elegant-view": "~0.9.0",
+        "elegant-sync": "~0.9.0",
         "extend": "~1.1.3",
+        "mysql": "~2.0.1",
+        "html-minifier": "~0.5.4",
         "mkdirp": "~0.3.5",
-        "node-static": "~0.7.2",
-        "mysql": "~2.0.0-rc2",
         "ncp": "~0.4.2",
-        "session-manager": "~0.1.0",
+        "node-static": "~0.7.3",
         "require-all": "~0.0.8",
+        "nodemailer": "~0.6.1",
+        "session-manager": "~0.1.0",
         "swig": "~1.0.0",
-        "trimmer": "~0.0.3"
+        "trimmer": "~0.0.3",
+        "uglify-js": "~2.4.8"
     },
     "devDependencies": {},
     "scripts": {
@@ -30,26 +37,26 @@
     },
     "repository": {
         "type": "git",
-        "url": "https://github.com/digital-flowers/livejs.git"
+        "url": "https://github.com/digital-flowers/elegant.git"
     },
     "keywords": [
+        "framework",
         "web",
-        "nodejs"
+        "nodejs",
+        "elegant",
+        "opensource"
     ],
-    "author": {
-        "name": "elegant team"
-    },
+    "author": "getelegant.com",
     "license": "GPL Version 3",
     "bugs": {
-        "url": "https://github.com/digital-flowers/livejs/issues"
+        "url": "https://github.com/digital-flowers/elegant/issues"
     },
     "bin": {
         "elegant": "./bin/elegant.js"
     },
-    "readme": "elegant webframework based on nodejs\n",
     "readmeFilename": "README.md",
-    "homepage": "https://github.com/digital-flowers/livejs",
-    "_id": "elegant@0.9.4",
+    "homepage": "http://getelegant.com/",
+    "_id": "elegant@0.9.8",
     "dist": {
         "shasum": "012f6922a116c76b1761cc08648975acf307d724"
     },
