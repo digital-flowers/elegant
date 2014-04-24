@@ -11,7 +11,7 @@
     http://getelegant.com/start.html#managing-static
 -->
 
-{% for bundle in RESOURCES %}
+{% for bundle in VIEW.RESOURCES %}
     {% if bundle.compact %} <!-- check if compact resources is enabled -->
         {% if bundle.type == "css" %}
             {% if bundle.cache && bundle.inline %} <!-- check if this bundle should be printed inline -->
