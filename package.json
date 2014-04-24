@@ -1,6 +1,6 @@
 {
     "name": "elegant",
-    "version": "0.9.8",
+    "version": "0.9.9",
     "description": "Open Source, Clean and Flexible NodeJs Web Framework With Beautiful Code, Easy to Learn And All the Power of Node",
     "main": "index.js",
     "dependencies": {
