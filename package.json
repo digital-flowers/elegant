@@ -18,7 +18,7 @@
         "elegant-response-data": "~0.9.0",
         "elegant-view": "~0.9.0",
         "elegant-sync": "~0.9.0",
-        "extend": "~1.1.3",
+        "extend": ">=2.0.2",
         "mysql": "~2.0.1",
         "html-minifier": "~0.5.4",
         "mkdirp": "~0.3.5",
